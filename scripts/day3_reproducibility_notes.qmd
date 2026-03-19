@@ -4,7 +4,7 @@ format: html
 editor: visual
 ---
 
-## Conda Environment Setup
+# Conda Environment Setup
 
 ## Step 1: Searching for FastQC
 
@@ -22,6 +22,8 @@ This particular command will provide us with all the version available for that 
 conda create --name week1 -y  # -y means "yes" to all questions automatically
 ```
 
+This command will create a env named week1
+
 ## Step 3: Activating the environment
 
 ```{bash}
@@ -29,11 +31,46 @@ conda create --name week1 -y  # -y means "yes" to all questions automatically
 conda activate week1
 ```
 
+this step will helps to activate the virtual environment week1
+
 ## Step 4: Installing packages in the environment activated in step 3
 
 ```{bash}
 #| eval: false
-conda install -c bioconda fastqc = 0.11.8 -y
+conda install -c bioconda fastqc=0.11.8 -y
 ```
 
-## 
+This will install the package fastqc with the particular version through a specific channel bioconda
+
+```{r}
+library(fastqcr)
+```
+
+# Docker environment setup
+
+## Step 1: Pulling an image
+
+```{bash}
+#| eval: false
+docker pull --platform linux/amd64 <image_name>
+```
+
+```{bash}
+#| eval: false
+# Pull the BUSCO image (a common genomics tool)
+# Format: docker pull <author>/<tool>:<version>
+docker pull ezlabgva/busco:v6.0.0_cv1
+```
+
+## Step 2: Running a Docker
+
+```{bash}
+#| eval: false
+# Breakdown of the command:
+# --rm  : Automatically delete the container when the task is finished (saves space)
+# -it   : Interactive Terminal (lets us see the output in real-time)
+# -v    : Volume mapping. This connects your computer's folder to the container's folder.
+#         Without this, the container cannot see your data!
+
+docker run --rm -it ezlabgva/busco:v6.0.0_cv1 busco --help
+```
