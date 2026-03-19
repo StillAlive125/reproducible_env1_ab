@@ -4,23 +4,36 @@ format: html
 editor: visual
 ---
 
-## Quarto
+## Conda Environment Setup
 
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+## Step 1: Searching for FastQC
 
-## Running Code
-
-When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
-
-```{r}
-1 + 1
+```{bash}
+#| eval: false
+conda search -c bioconda fastqc
 ```
 
-You can add options to executable code like this
+This particular command will provide us with all the version available for that particular package in that specific channel.
 
-```{r}
-#| echo: false
-2 * 2
+## Step 2:  Creating environment
+
+```{bash}
+#| eval: false
+conda create --name week1 -y  # -y means "yes" to all questions automatically
 ```
 
-The `echo: false` option disables the printing of code (only output is displayed).
+## Step 3: Activating the environment
+
+```{bash}
+#| eval: false
+conda activate week1
+```
+
+## Step 4: Installing packages in the environment activated in step 3
+
+```{bash}
+#| eval: false
+conda install -c bioconda fastqc = 0.11.8 -y
+```
+
+## 
